@@ -18,8 +18,8 @@ exports.handler = async function(context, event, callback) {
     const conversation = cookieData?.conversation || [];
     conversation.push(`user: ${voiceInput}`);
 
-    // get the AI's response based on the conversation history
-    const aiResponse = await generateAIResponse(conversation.join(";"));
+    // get the AI's response based on the conversation history and user profile
+    const aiResponse = await generateAIResponse(conversation.join(";"), cookieData?.profile);
 
     const cleanedAiResponse = aiResponse.replace(/^\w+:\s*/i, "").trim();
 
@@ -32,14 +32,14 @@ exports.handler = async function(context, event, callback) {
 
     twiml.say({
         voice: "Polly.Joanna-Neural",
-      },
-      cleanedAiResponse
+    },
+        cleanedAiResponse
     );
 
     twiml.redirect({
         method: "POST",
-      },
-      `/transcribe`
+    },
+        `/transcribe`
     );
 
     response.appendHeader("Content-Type", "application/xml");
@@ -47,18 +47,19 @@ exports.handler = async function(context, event, callback) {
 
     
     const newCookieValue = encodeURIComponent(
-      JSON.stringify({
-          conversation,
-      })
+        JSON.stringify({
+            conversation,
+            profile: cookieData?.profile,
+        })
     );
     response.setCookie("convo", newCookieValue, ["Path=/"]);
 
     // return the response
     return callback(null, response);
 
-    // generate the AI response based on the conversation history
-    async function generateAIResponse(conversation) {
-        const messages = formatConversation(conversation);
+    // generate the AI response based on the conversation history and user profile
+    async function generateAIResponse(conversation, userProfile) {
+        const messages = formatConversation(conversation, userProfile);
         return await createChatCompletion(messages);
     }
 
@@ -117,23 +118,35 @@ exports.handler = async function(context, event, callback) {
         }
     }
 
-    // format the conversation history into a format that the OpenAI API can understand
-    function formatConversation(conversation) {
+    // format the conversation history and user profile into a format that the OpenAI API can understand
+    function formatConversation(conversation, userProfile) {
         let isAI = true;
         const messages = [
-          {
-            "role": "system",
-            "content": "You are a mental health proffessional specializing in student health. You can provide advice, and ask students questions to help diagnose, or you can triage to other medical profs. You should be very helpul only around this topic as it relates to University students. You should not provide any information or help regarding any other topics not related students health."
-          },
-          {
-            "role": "system",
-            "content": "at the users first greeting, ask me questions to diagnose how i am feeling today, one question at a time, and take it from there - unless the user immediately express something important in the first message"
-          },
-          {
-            role: "user",
-            content: "We are having a casual conversation over the telephone so please provide helpful but concise responses.",
-          },
+            {
+                role: "system",
+                content: "You are a specialist with names and are a very personable bot. You will use these name or pronouns throughout the conversation to make it personable."
+            },
+            {
+                role: "system",
+                content: "You are a mental health professional specializing in student health. You can provide advice and ask students questions to help diagnose, or you can triage to other medical professinals. You should be very helpul only around this topic as it relates to University students. You should not provide any information or help regarding any other topics not related students health."
+            },
+            {
+                role: "system",
+                content: "At the users first greeting, ask me questions to diagnose how i am feeling today, one question at a time, and take it from there - unless the user immediately express something important in the first message"
+            },
+            {
+                role: "user",
+                content: "We are having a casual conversation over the telephone so please provide helpful but concise responses.",
+            },
         ];
+
+        // add user profile information to the conversation history
+        if (userProfile) {
+            messages.push({
+                role: "system",
+                content: `User Profile: Name - ${userProfile.name}, Pronouns - ${userProfile.pronouns}, concerns - ${userProfile.concerns}`,
+            });
+        }
 
         // alternate between 'assistant' and 'user' roles
         for (const message of conversation.split(";")) {
