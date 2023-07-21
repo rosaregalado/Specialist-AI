@@ -3,12 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>User Profile</title>
+  <title>User info</title>
 </head>
 <body>
-  <h1>Create User Profile</h1>
+  <h1>User info</h1>
 
   <form id="profileForm">
+    <label for="to">Phone Number:</label>
+    <input type="text" id="to" name="to" required>
+
     <label for="name">Name:</label>
     <input type="text" id="name" name="name" required>
 
@@ -26,13 +29,14 @@
     profileForm.addEventListener('submit', (event) => {
       event.preventDefault();
 
-      // extract user profile data from the form
+      // extract user data from the form
+      const to = document.getElementById('to').value;
       const name = document.getElementById('name').value;
       const pronouns = document.getElementById('pronouns').value;
       const concerns = document.getElementById('concerns').value;
 
-      // create an obj with user profile data
-      const userProfile = { name, pronouns, concerns, To: '+15105204320' };
+      // create an obj with user data
+      const userProfile = { to, name, pronouns, concerns };
       console.log(userProfile)
       // POST request to capture user profile data
       fetch('https://healthnow-8569-dev.twil.io/transcribe', {
@@ -51,7 +55,21 @@
         console.error('Error capturing profile:', error);
         alert('An error occurred. Please try again.');
       });
-    });  
+    });
+    
+    function makeOutboundCall(userProfile) {
+      fetch('https://healthnow-8569-dev.twil.io/transcribe', {
+        method: 'POST',
+        headers: {},
+        body: JSON.stringify({to, name}),
+      })
+      .then((response) => {
+        console.log('outbound call triggered')
+      })
+      .catch((error) => {
+        console.error('error triggering outbound call:', error);
+      });
+    }
   </script>
 </body>
 </html>
