@@ -8,7 +8,7 @@ exports.handler = function(context, event, callback) {
         "therapy": {
             name: 'Joanna',
             voice: 'Polly.Joanna-Neural',
-            intro: `Hey, ${name}! I'm Joanna, a health proffessional chatbot. You mentioned ${additionaldata}. Please say more.`
+            intro: `Hey, ${name}! I'm Joanna, a mental health proffessional chatbot. You mentioned ${additionaldata}. Please say more.`
         },
         "cooking": {
             name: 'Joey',

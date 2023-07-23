@@ -15,9 +15,6 @@
     <label for="name">Name:</label>
     <input type="text" id="name" name="name" required>
 
-    <label for="pronouns">Preferred Pronouns:</label>
-    <input type="text" id="pronouns" name="pronouns" required>
-
     <label for="concerns">Concerns:</label>
     <input type="text" id="concerns" name="concerns" required>
 
@@ -25,51 +22,51 @@
   </form>
 
   <script>
-    const profileForm = document.getElementById('profileForm');
-    profileForm.addEventListener('submit', (event) => {
-      event.preventDefault();
+  //   const profileForm = document.getElementById('profileForm');
+  //   profileForm.addEventListener('submit', (event) => {
+  //     event.preventDefault();
 
-      // extract user data from the form
-      const to = document.getElementById('to').value;
-      const name = document.getElementById('name').value;
-      const pronouns = document.getElementById('pronouns').value;
-      const concerns = document.getElementById('concerns').value;
+  //     // extract user data from the form
+  //     const to = document.getElementById('to').value;
+  //     const name = document.getElementById('name').value;
+  //     const pronouns = document.getElementById('pronouns').value;
+  //     const concerns = document.getElementById('concerns').value;
 
-      // create an obj with user data
-      const userProfile = { to, name, pronouns, concerns };
-      console.log(userProfile)
-      // POST request to capture user profile data
-      fetch('https://healthnow-8569-dev.twil.io/transcribe', {
-        method: 'POST',
-        headers: {},
-        body: JSON.stringify(userProfile),
-      })
-      .then((response) => {
-        if (response.ok) {
-          alert('Profile recorded successfully!');
-        } else {
-          alert('Failed to capture profile. Please try again.');
-        }
-      })
-      .catch((error) => {
-        console.error('Error capturing profile:', error);
-        alert('An error occurred. Please try again.');
-      });
-    });
+  //     // create an obj with user data
+  //     const userProfile = { to, name, pronouns, concerns };
+  //     console.log(userProfile)
+  //     // POST request to capture user profile data
+  //     fetch('https://healthnow-8569-dev.twil.io/transcribe', {
+  //       method: 'POST',
+  //       headers: {},
+  //       body: JSON.stringify(userProfile),
+  //     })
+  //     .then((response) => {
+  //       if (response.ok) {
+  //         alert('Profile recorded successfully!');
+  //       } else {
+  //         alert('Failed to capture profile. Please try again.');
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.error('Error capturing profile:', error);
+  //       alert('An error occurred. Please try again.');
+  //     });
+  //   });
     
-    function makeOutboundCall(userProfile) {
-      fetch('https://healthnow-8569-dev.twil.io/transcribe', {
-        method: 'POST',
-        headers: {},
-        body: JSON.stringify({to, name}),
-      })
-      .then((response) => {
-        console.log('outbound call triggered')
-      })
-      .catch((error) => {
-        console.error('error triggering outbound call:', error);
-      });
-    }
+  //   function makeOutboundCall(userProfile) {
+  //     fetch('https://healthnow-8569-dev.twil.io/transcribe', {
+  //       method: 'POST',
+  //       headers: {},
+  //       body: JSON.stringify({to, name}),
+  //     })
+  //     .then((response) => {
+  //       console.log('outbound call triggered')
+  //     })
+  //     .catch((error) => {
+  //       console.error('error triggering outbound call:', error);
+  //     });
+  //   }
   </script>
 </body>
 </html>
