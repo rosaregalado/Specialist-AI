@@ -1,15 +1,15 @@
-#Specialist AI
+# Specialist AI
 --------------------------------------------------------------------
 
-##Introduction
+## Introduction
 
 Specialist AI, formerly known as 'Health Now,' was born out of a passion to address the growing concerns about mental health among students and the limited accessibility to therapy and counseling. This project emerged from the crucible of a students' hackathon in April, where the challenge was to craft an app/product to enhance the physical and mental well-being of college students.
 
-##Inspiration
+## Inspiration
 
 The inspiration for Specialist AI stemmed from the undeniable need for accessible mental health resources for students. With mental health becoming an increasingly pressing issue, this project was designed to create a solution that effortlessly provides students with guidance and resources to nurture their holistic well-being.
 
-##Technology Stack
+## Technology Stack
 
 Specialist AI is a testament to innovation and integration, developed using a blend of cutting-edge technologies:
 
@@ -19,7 +19,7 @@ Twilio's API: The gateway to communication, enabling the bot to initiate and par
 
 OpenAI API: The heart and soul of the bot's intellect, training it to understand and respond to natural language inputs with empathy and accuracy.
 
-##How It Works
+## How It Works
 
 The essence of Specialist AI lies in its simplicity:
 
