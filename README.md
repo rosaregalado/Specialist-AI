@@ -26,7 +26,7 @@ The essence of Specialist AI lies in its simplicity:
 
 2 - The AI specialist bot will call the phone number and have a personalized conversation with the user.
 
-##Demo
+## Demo
 
 The submission of the form creates a POST request to the server to trigger the call from the AI Specialist. This is an example of how the form request would look like: 
 
