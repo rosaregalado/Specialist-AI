@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Specialist AI, formerly known as 'Health Now,' was born out of a passion to address the growing concerns about mental health among students and the limited accessibility to therapy and counseling. This project emerged from the crucible of a students' hackathon in April, where the challenge was to craft an app/product to enhance the physical and mental well-being of college students.
+Specialist AI, formerly known as 'Health Now,' was born out of a passion to address the growing concerns about mental health among students and the limited accessibility to therapy and counseling. This project emerged from the crucible of a students' hackathon in April, where the challenge was to craft an app/product to enhance the physical and mental well-being of college students. 
 
 ## Inspiration
 
@@ -20,7 +20,8 @@ OpenAI API: The heart and soul of the bot's intellect, training it to understand
 
 ## How It Works
 
-The essence of Specialist AI lies in its simplicity:
+The essence of Specialist AI lies in its simplicity.  Each bot has a different role and is trained with a specific profession that will provide guidance based on the context given by the user. 
+
 
 1 - The user will submit a form with their phone number, name, specialist needed (mental health, culinary expert, or fitness coach) and any additional info. 
 
