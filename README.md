@@ -31,10 +31,10 @@ The essence of Specialist AI lies in its simplicity.  Each bot has a different r
 
 The submission of the form creates a POST request to the server to trigger the call from the AI Specialist. This is an example of how the form request would look like: 
 
-```{"To":"+1(510)-520-4320", "name": "monica", "keyword": "therapy", "additionaldata": "my dog died"```
+```{"To":"+1(510)-555-4320", "name": "monica", "keyword": "therapy", "additionaldata": "my dog died"```
 
-```{"To":"+1(510)-520-4320", "name": "rosa", "keyword": "cooking", "additionaldata": "prepare for a weight lifting session"}```
+```{"To":"+1(510)-555-4320", "name": "rosa", "keyword": "cooking", "additionaldata": "prepare for a weight lifting session"}```
 
-```{"To":"+1(510)-520-4320", "name": "chloe", "keyword": "fitness", "additionaldata": "prepare for a weight lifting session"}```
+```{"To":"+1(510)-555-4320", "name": "chloe", "keyword": "fitness", "additionaldata": "prepare for a weight lifting session"}```
 
 
